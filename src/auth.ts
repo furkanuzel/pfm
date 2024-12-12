@@ -42,17 +42,7 @@ const authConfig = {
     },
     async signIn({ user, account }: any) {
       const existingUser = await getUserById(user.id);
-      if (
-        account.provider &&
-        (account.provider === "google" || account.provider === "github")
-      ) {
-        return true;
-      }
-
       if (!existingUser) return false;
-      if (account.provider === "credentials" && !existingUser.emailVerified) {
-        return false;
-      }
       return true;
     },
   },

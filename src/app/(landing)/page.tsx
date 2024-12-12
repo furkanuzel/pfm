@@ -16,7 +16,7 @@ import { LoaderButton } from "@/components/loader-button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
 import { RegisterSchema } from "@/schemas/register-schema";
-import { register } from "@/actions/user.actions";
+import { login, register } from "@/actions/user.actions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
@@ -26,6 +26,7 @@ import Container from "@/components/container";
 import { toast } from "sonner";
 import Wrapper from "@/components/wrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LoginSchema } from "@/schemas/login-schema";
 
 export default function Home() {
   const [error, setError] = useState({
@@ -53,6 +54,20 @@ export default function Home() {
     }
     setIsLoading(false);
   }
+  async function onSubmit2(values: z.infer<typeof LoginSchema>) {
+    console.log("furkan")  
+    try {
+        setIsLoading(true);
+        const result = await login(values);
+        if (result?.error) {
+          toast.error(result.error);
+        }
+      } catch (error: any) {
+        toast.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
   return (
     <Wrapper>
@@ -136,7 +151,7 @@ export default function Home() {
           <TabsContent className="py-4" value="sign-in">
             <Form {...form}>
               <h1 className="text-2xl font-bold mb-4">Log in to PFM</h1>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit2)} className="space-y-6">
                 <FormField
                   control={form.control}
                   name="email"
