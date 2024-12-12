@@ -1,0 +1,48 @@
+{
+  "version": "6",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1720313634592,
+      "tag": "0000_cute_kree",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1728875114209,
+      "tag": "0001_tan_firestar",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1729563415730,
+      "tag": "0002_tiny_pet_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1729564627640,
+      "tag": "0003_optimal_lizard",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1729649880902,
+      "tag": "0004_absent_captain_flint",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1729655484993,
+      "tag": "0005_perfect_lily_hollister",
+      "breakpoints": true
+    }
+  ]
+}
