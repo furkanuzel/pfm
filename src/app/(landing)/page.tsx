@@ -27,6 +27,7 @@ import { toast } from "sonner";
 import Wrapper from "@/components/wrapper";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LoginSchema } from "@/schemas/login-schema";
+import LoginComponent from "./login";
 
 export default function Home() {
   const [error, setError] = useState({
@@ -54,20 +55,6 @@ export default function Home() {
     }
     setIsLoading(false);
   }
-  async function onSubmit2(values: z.infer<typeof LoginSchema>) {
-    console.log("furkan")  
-    try {
-        setIsLoading(true);
-        const result = await login(values);
-        if (result?.error) {
-          toast.error(result.error);
-        }
-      } catch (error: any) {
-        toast.error(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
 
   return (
     <Wrapper>
@@ -149,62 +136,7 @@ export default function Home() {
             </Form>
           </TabsContent>
           <TabsContent className="py-4" value="sign-in">
-            <Form {...form}>
-              <h1 className="text-2xl font-bold mb-4">Log in to PFM</h1>
-              <form onSubmit={form.handleSubmit(onSubmit2)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          className="w-full text-xs"
-                          placeholder="alan.turing@example.com"
-                          type="email"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          className="w-full text-xs"
-                          placeholder="Your password"
-                          type="password"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                {error.state && (
-                  <Alert variant="destructive">
-                    <Terminal className="h-4 w-4" />
-                    <AlertTitle>Uh-oh, we couldn&apos;t log you in</AlertTitle>
-                    <AlertDescription>{error.message}</AlertDescription>
-                  </Alert>
-                )}
-                <LoaderButton
-                  isLoading={isLoading}
-                  className="w-full"
-                  type="submit"
-                >
-                  Log In
-                </LoaderButton>
-              </form>
-            </Form>
+            <LoginComponent />
           </TabsContent>
         </Tabs>
       </main>
